@@ -1,10 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware'
 
-export function getCartQuantity(cart: any[]) {
-  return cart.reduce((total, item) => total + (item.quantity || 1), 0)
-}
-
 const useCart = create()(
   persist(
     (set, get) => ({
@@ -110,6 +106,22 @@ const useCart = create()(
       },
     }),
     { name: 'cart-store' }
+  )
+)
+
+export const useThemeStore = create()(
+  persist(
+    (set, get) => ({
+      mode: 'light',
+      toggleMode: (params: any) => {
+        set((state: any) => {
+          return {
+            mode: params
+          }
+        })
+      }
+    }),
+    { name: 'theme-store' }
   )
 )
 
