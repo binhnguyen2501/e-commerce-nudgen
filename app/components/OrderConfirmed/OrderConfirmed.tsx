@@ -28,8 +28,8 @@ export default function OrderConfirmed() {
       className="flex flex-col items-center justify-center my-12"
     >
       <div className="p-12 rounded-md text-center flex flex-col items-center">
-        <h1 className="text-xl font-medium">Your order has been placed</h1>
-        <h2 className="my-4 text-sm">Check your email for the receipt.</h2>
+        <h1 className="text-xl font-medium">Payment successful</h1>
+        <h2 className="my-4 text-sm">Your order has been placed.</h2>
         <Image
           src={Dance}
           alt="success"

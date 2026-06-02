@@ -27,7 +27,7 @@ export default function CheckoutForm() {
   return (
     <form onSubmit={handleSubmit} id="payment-form">
       <div className="rounded-md bg-base-100 p-4 text-sm">
-        Demo checkout mode: payment is mocked and will always succeed.
+        Demo pay mode: payment is mocked and will always succeed.
       </div>
       <div className="my-4 flex items-center gap-2">
         <span className="font-bold">Total:</span>

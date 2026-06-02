@@ -3,6 +3,7 @@ import { Roboto } from "@next/font/google";
 import Script from "next/script";
 
 import QueryProvider from "@/utils/QueryProvider";
+import ToastProvider from "@/utils/ToastProvider";
 import Header from "./header";
 
 import "./globals.css";
@@ -38,6 +39,7 @@ export default async function RootLayout({ children }: IRootLayoutProps) {
       </head>
       <body data-theme="light">
         <QueryProvider>
+          <ToastProvider />
           <Header />
           {children}
         </QueryProvider>

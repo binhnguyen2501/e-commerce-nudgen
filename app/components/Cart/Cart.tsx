@@ -5,6 +5,7 @@ import Image from "next/image";
 import { IoAddCircle, IoRemoveCircle } from "react-icons/io5";
 import formatPrice from "@/utils/FormatPrice";
 import { AnimatePresence, motion } from "framer-motion";
+import toast from "react-hot-toast";
 import useCart from "@/store/store";
 
 import Button from "../Button/Button";
@@ -144,10 +145,12 @@ export default function Cart() {
             <Button
               variant="basic"
               onClick={() => {
+                toast.success("Payment successful!");
                 setCheckout("success");
+                toggleCartList();
               }}
             >
-              Checkout
+              Pay
             </Button>
           </motion.div>
         ) : null}
