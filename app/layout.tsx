@@ -33,7 +33,8 @@ export default async function RootLayout({ children }: IRootLayoutProps) {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', '${gaId}');
+            const isLocalhost = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+            gtag('config', '${gaId}', { debug_mode: isLocalhost });
           `}
         </Script>
       </head>

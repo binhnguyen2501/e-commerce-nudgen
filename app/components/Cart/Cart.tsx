@@ -25,6 +25,33 @@ export default function Cart() {
   const onCheckout = useCart((state: any) => state.onCheckout);
   const setCheckout = useCart((state: any) => state.setCheckout);
 
+  const triggerPurchaseEvent = () => {
+    if (typeof window === "undefined") return;
+
+    const gtag = (window as any).gtag;
+    if (typeof gtag !== "function") return;
+
+    const transactionId = `T_${Date.now()}`;
+    const value = Number((totalAllProductPrice / 100).toFixed(2));
+    const isLocalhost = ["localhost", "127.0.0.1"].includes(window.location.hostname);
+
+    const items = cartListProduct.map((item: any, index: number) => ({
+      item_id: String(item.id),
+      item_name: item.name,
+      price: Number((item.unit_amount / 100).toFixed(2)),
+      quantity: item.quantity,
+      index,
+    }));
+
+    gtag("event", "purchase", {
+      transaction_id: transactionId,
+      value,
+      currency: "USD",
+      debug_mode: isLocalhost,
+      items,
+    });
+  };
+
   useEffect(() => {
     if (!cartListProduct.length && onCheckout !== "cart") {
       setCheckout("cart");
@@ -145,6 +172,7 @@ export default function Cart() {
             <Button
               variant="basic"
               onClick={() => {
+                triggerPurchaseEvent();
                 toast.success("Payment successful!");
                 setCheckout("success");
                 toggleCartList();
